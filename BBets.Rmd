@@ -33,7 +33,8 @@ There are 3 questions and there should be at least 3 separate commits, at least 
 # Methods
 <!--Decide on your methods:  In this section explain the approach you will take to attack the issue --- how will you decide on a likely estimate of professor Brownlow's earnings or losses after 637 bets. Also explain how you construct a 95% confidence interval about your estimate of his winnings !-->
 Will solve this problem by re-sampling.    
-Will set up days of the year, take a ramdom sample of 35, and see if 2 or more have the same birthday.   
+Will set up days of the year, take a ramdom sample of 35, and see if 2 or more have the same birthday.  
+
 
 ```{r}
 daysYEAR=1:365
@@ -91,7 +92,7 @@ bank=0
 for(i in 1:637){
     class=sample(daysYEAR,35,replace=TRUE)
     n=length(unique(class))
-    if(n == 35)bank=bank-3
+    if(n == 35)bank=bank-4.5
     else bank=bank+1
 }
 results[j]=bank
@@ -100,16 +101,16 @@ hist(results)
 ```
 The amount that Dr.J would have to pay to be fair is 
 
-# number of students  for a fair bet 
+# number of students for a fair bet 
    
 ```{r}
 results=vector("numeric")
 for(j in 1:1000){
 bank=0
 for(i in 1:637){
-    class=sample(daysYEAR,28,replace=TRUE)
+    class=sample(daysYEAR,29,replace=TRUE)
     n=length(unique(class))
-    if(n == 28)bank=bank-2
+    if(n == 29)bank=bank-2
     else bank=bank+1
 }
 results[j]=bank
@@ -117,9 +118,10 @@ results[j]=bank
 hist(results)
 ```
 <!--Explain and display your method of coming up with a 95% confidence interval of  professor Brownlows winnings (or losings)-->
-
+We use historgam to determine the 95% confidence interval, we change the amount of money and students in the class in order to make it a fair bet. 
 
 # Discussion and Conclusion
+We determined that for it to be a fair bet there needs to be 29 students and the amount of the bets place being 4.50. The answers could be infinite depending how many students are in a class and how much money is being bet. 
 
 <!--Discussion and conclusion here.  If professor Brownlow is consistantly making or losing money how could he change his payout so that his profits center on zero?  Also discuss what size his class should be in order to have his current scheme balance at zero profit.!-->
 
